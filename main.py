@@ -42,6 +42,10 @@ class Game:
                     self.playerOne.movePlayer(-10, 0)
                 elif sf.Keyboard.is_key_pressed(sf.Keyboard.D):
                     self.playerOne.movePlayer(10, 0)
+                elif sf.Keyboard.is_key_pressed(sf.Keyboard.Q):
+                    self.playerOne.rotatePlayer(-10)
+                elif sf.Keyboard.is_key_pressed(sf.Keyboard.E):
+                    self.playerOne.rotatePlayer(10)
             self.window.clear(sf.Color.TRANSPARENT)
             self.window.draw(self.playerOne.shape)
             self.window.display()
@@ -56,11 +60,14 @@ class Player:
         self.shape.outline_thickness = 3
         self.shape.outline_color = sf.Color.BLACK
         self.shape.fill_color = sf.Color.WHITE
-        self.shape.origin = (self.size / 2, self.size/2)
+        self.shape.origin = (self.shape.radius, self.shape.radius) # self.size is wrong: radius = size-3
         self.shape.position = (GameInstanceClass.RESOLUTION[0]/2, GameInstanceClass.RESOLUTION[1]/2)
 
     def movePlayer(self,x,y):
         self.shape.move((x,y))
+
+    def rotatePlayer(self,fi):
+        self.shape.rotate(fi)
 
 
 if __name__ == "__main__":
