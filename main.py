@@ -1,39 +1,48 @@
 import sfml as sf
 import sys
 
-ball_radius = 10
+class Game:
+    print "Game class created"
+    def __init__(self):
+        
+        self.RESOLUTION = 1024, 768
 
-RESOLUTION = 1024, 768
-ball = sf.CircleShape()
-ball.radius = ball_radius - 3
-ball.outline_thickness = 3
-ball.outline_color = sf.Color.BLACK
-ball.fill_color = sf.Color.WHITE
-ball.origin = (ball_radius / 2, ball_radius / 2)
-ball.position = ((RESOLUTION[0]/2, RESOLUTION[1]/2))
+        BALL_RADIUS = 10
+        self.ball = sf.CircleShape()
+        self.ball.radius = BALL_RADIUS - 3
+        self.ball.outline_thickness = 3
+        self.ball.outline_color = sf.Color.BLACK
+        self.ball.fill_color = sf.Color.WHITE
+        self.ball.origin = (BALL_RADIUS / 2, BALL_RADIUS / 2)
+        self.ball.position = ((self.RESOLUTION[0]/2, self.RESOLUTION[1]/2))
 
 
-title_text = "pedeRPG"
-window = sf.RenderWindow(sf.VideoMode(*RESOLUTION), title_text)
+        TITLE_TEXT = "pedeRPG"
+        self.window = sf.RenderWindow(sf.VideoMode(*self.RESOLUTION), TITLE_TEXT)
 
-try:
-    texture = sf.Texture.from_file('square.png')
-    sprite = sf.Sprite(texture, sf.Rectangle((10, 10)))
-except IOError: exit(1)
+        try:
+            self.texture = sf.Texture.from_file('square.png')
+            self.sprite = sf.Sprite(self.texture, sf.Rectangle((10, 10)))
+        except IOError: exit(1)
+        self.gameLoop()
 
-while window.is_open:
-    for event in window.events:
-        print(event, type(event))
-        if event == sf.CloseEvent:
-            window.close()
-        elif sf.Keyboard.is_key_pressed(sf.Keyboard.W):
-            ball.move((0, -10)) 
-        elif sf.Keyboard.is_key_pressed(sf.Keyboard.S):
-            ball.move((0, 10))
-        elif sf.Keyboard.is_key_pressed(sf.Keyboard.A):
-            ball.move((-10, 0))
-        elif sf.Keyboard.is_key_pressed(sf.Keyboard.D):
-            ball.move((10, 0))
-    window.clear(sf.Color.TRANSPARENT)
-    window.draw(ball)
-    window.display()
+    def gameLoop(self):
+        while self.window.is_open:
+            for event in self.window.events:
+                print(event, type(event))
+                if event == sf.CloseEvent:
+                    self.window.close()
+                elif sf.Keyboard.is_key_pressed(sf.Keyboard.W):
+                    self.ball.move((0, -10)) 
+                elif sf.Keyboard.is_key_pressed(sf.Keyboard.S):
+                    self.ball.move((0, 10))
+                elif sf.Keyboard.is_key_pressed(sf.Keyboard.A):
+                    self.ball.move((-10, 0))
+                elif sf.Keyboard.is_key_pressed(sf.Keyboard.D):
+                    self.ball.move((10, 0))
+            self.window.clear(sf.Color.TRANSPARENT)
+            self.window.draw(self.ball)
+            self.window.display()
+
+if __name__ == "__main__":
+    myapp=Game()
