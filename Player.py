@@ -40,4 +40,10 @@ class Player:
 
 class SpaceShip:
     def __init__(self, GameInstanceClass, location = (0,0), AI = 0):
+        self.vel = {'x':0, 'y':0} # Velocity of the ship in x in y direction
+        self.dVEL = 1 # delta Velocity -> change of velocity in every step (if accelarating)
+        self.angle = 0 # Angle of the ship
+
         pass
+
+    
