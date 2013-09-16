@@ -4,6 +4,7 @@ import Player
 import WorldCreator
 
 class Game:
+    ### THIS IS GameInstanceClass
     print "Game class created"
     def __init__(self):
         # Window init
@@ -51,49 +52,49 @@ class EventListener:
         
         self.eventList = sf.Event()
                
-    def listen(self, gameInstanceClass):
-        self.eventList = gameInstanceClass.window.poll_event()
+    def listen(self, GameInstanceClass):
+        self.eventList = GameInstanceClass.window.poll_event()
         if self.eventList == sf.CloseEvent:
-            gameInstanceClass.window.close()
+            GameInstanceClass.window.close()
         elif type(self.eventList) is sf.KeyEvent and self.eventList.pressed:
 
-            if not gameInstanceClass.controls['up'] and self.eventList.code is sf.Keyboard.W:
-                gameInstanceClass.controls['up'] = 1
+            if not GameInstanceClass.controls['up'] and self.eventList.code is sf.Keyboard.W:
+                GameInstanceClass.controls['up'] = 1
 
-            elif not gameInstanceClass.controls['down'] and self.eventList.code is sf.Keyboard.S:
-                gameInstanceClass.controls['down'] = 1
+            elif not GameInstanceClass.controls['down'] and self.eventList.code is sf.Keyboard.S:
+                GameInstanceClass.controls['down'] = 1
 
-            elif not gameInstanceClass.controls['left'] and self.eventList.code is sf.Keyboard.A:
-                gameInstanceClass.controls['left'] = 1
+            elif not GameInstanceClass.controls['left'] and self.eventList.code is sf.Keyboard.A:
+                GameInstanceClass.controls['left'] = 1
 
-            elif not gameInstanceClass.controls['right'] and self.eventList.code is sf.Keyboard.D:
-                gameInstanceClass.controls['right'] = 1
+            elif not GameInstanceClass.controls['right'] and self.eventList.code is sf.Keyboard.D:
+                GameInstanceClass.controls['right'] = 1
 
-            elif not gameInstanceClass.controls['rotateL'] and self.eventList.code is sf.Keyboard.Q:
-                gameInstanceClass.controls['rotateL'] = 1
+            elif not GameInstanceClass.controls['rotateL'] and self.eventList.code is sf.Keyboard.Q:
+                GameInstanceClass.controls['rotateL'] = 1
 
-            elif not gameInstanceClass.controls['rotateR'] and self.eventList.code is sf.Keyboard.E:
-                gameInstanceClass.controls['rotateR'] = 1
+            elif not GameInstanceClass.controls['rotateR'] and self.eventList.code is sf.Keyboard.E:
+                GameInstanceClass.controls['rotateR'] = 1
 
 
         elif type(self.eventList) is sf.KeyEvent and self.eventList.released:
             if self.eventList.code is sf.Keyboard.W:
-                gameInstanceClass.controls['up'] = 0
+                GameInstanceClass.controls['up'] = 0
 
             elif self.eventList.code is sf.Keyboard.S:
-                gameInstanceClass.controls['down'] = 0
+                GameInstanceClass.controls['down'] = 0
 
             elif self.eventList.code is sf.Keyboard.A:
-                gameInstanceClass.controls['left'] = 0
+                GameInstanceClass.controls['left'] = 0
 
             elif self.eventList.code is sf.Keyboard.D:
-                gameInstanceClass.controls['right'] = 0
+                GameInstanceClass.controls['right'] = 0
 
             elif self.eventList.code is sf.Keyboard.Q:
-                gameInstanceClass.controls['rotateL'] = 0
+                GameInstanceClass.controls['rotateL'] = 0
 
             elif self.eventList.code is sf.Keyboard.E:
-                gameInstanceClass.controls['rotateR'] = 0
+                GameInstanceClass.controls['rotateR'] = 0
 
 
 

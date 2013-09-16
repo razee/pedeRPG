@@ -4,7 +4,7 @@ class StarMap:
     pass
     ## TODO
     #  We will call this class in game initialization
-    #  __init__(self, GameInstanceClass) --example--> GameInstanceClass.StarMap.data()
+    #  __init__(self, GIC) --example--> GIC.StarMap.data()
     #  - create random starmap
     #       - fill matrix with star data --example--> StarMap.data()
     #           - location
