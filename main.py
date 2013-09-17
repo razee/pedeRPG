@@ -1,12 +1,16 @@
 import sfml as sf
 import sys
-import Player
+from EventListener import EventListener
+from Player import Player
 import WorldCreator
+import Render
+
 
 class Game:
-    ### THIS IS GameInstanceClass
-    print "Game class created"
+    ### THIS IS GameInstanceClass, lets call it GIC
+    print "Game Instance created."
     def __init__(self):
+        print "Starting Game.__init__()."
         # Window init
         self.RESOLUTION = 1024, 768
         TITLE_TEXT = "pedeRPG"
@@ -16,14 +20,18 @@ class Game:
         self.controls = {'up':0, 'down':0, 'left':0, 'right':0, 'rotateL':0, 'rotateR':0}
         self.events = EventListener()
 
-        # Create map
-        # starMap = WorldCreator.StarMap(PARAMETERS) # TODO WorldCreator.StarMap
+        # Create map class
+        starMap = WorldCreator.StarMap()
+        # Create star data
+        starMap.randomStarGenerator
+
 
         ## Create Player
         ## TODO
         # Player.SpaceShip(PARAMETERS)
-        self.playerOne = Player.Player(self)
+        self.playerOne = Player(self)
 
+        print "Game.__init__ finished. Starting gameLoop."
         # START OUR GAME LOOP!
         self.gameLoop()
 
@@ -46,76 +54,6 @@ class Game:
         self.playerOne.movePlayer(self)
         ## TODO
         # Update everything
-
-class EventListener:
-    def __init__(self):
-        
-        self.eventList = sf.Event()
-               
-    def listen(self, GameInstanceClass):
-        self.eventList = GameInstanceClass.window.poll_event()
-        if self.eventList == sf.CloseEvent:
-            GameInstanceClass.window.close()
-        elif type(self.eventList) is sf.KeyEvent and self.eventList.pressed:
-
-            if not GameInstanceClass.controls['up'] and self.eventList.code is sf.Keyboard.W:
-                GameInstanceClass.controls['up'] = 1
-
-            elif not GameInstanceClass.controls['down'] and self.eventList.code is sf.Keyboard.S:
-                GameInstanceClass.controls['down'] = 1
-
-            elif not GameInstanceClass.controls['left'] and self.eventList.code is sf.Keyboard.A:
-                GameInstanceClass.controls['left'] = 1
-
-            elif not GameInstanceClass.controls['right'] and self.eventList.code is sf.Keyboard.D:
-                GameInstanceClass.controls['right'] = 1
-
-            elif not GameInstanceClass.controls['rotateL'] and self.eventList.code is sf.Keyboard.Q:
-                GameInstanceClass.controls['rotateL'] = 1
-
-            elif not GameInstanceClass.controls['rotateR'] and self.eventList.code is sf.Keyboard.E:
-                GameInstanceClass.controls['rotateR'] = 1
-
-
-        elif type(self.eventList) is sf.KeyEvent and self.eventList.released:
-            if self.eventList.code is sf.Keyboard.W:
-                GameInstanceClass.controls['up'] = 0
-
-            elif self.eventList.code is sf.Keyboard.S:
-                GameInstanceClass.controls['down'] = 0
-
-            elif self.eventList.code is sf.Keyboard.A:
-                GameInstanceClass.controls['left'] = 0
-
-            elif self.eventList.code is sf.Keyboard.D:
-                GameInstanceClass.controls['right'] = 0
-
-            elif self.eventList.code is sf.Keyboard.Q:
-                GameInstanceClass.controls['rotateL'] = 0
-
-            elif self.eventList.code is sf.Keyboard.E:
-                GameInstanceClass.controls['rotateR'] = 0
-
-
-
-
-        # self.event = gameInstanceClass.window.poll_event()
-        # print(self.event, type(self.event)) # For Dev purposes
-
-        # if self.event == sf.CloseEvent:
-        #     gameInstanceClass.window.close()
-        # elif sf.Keyboard.is_key_pressed(sf.Keyboard.W):
-        #     gameInstanceClass.controls['up'] = 1
-        # elif sf.Keyboard.is_key_pressed(sf.Keyboard.S):
-        #     gameInstanceClass.controls['down'] = 1
-        # elif sf.Keyboard.is_key_pressed(sf.Keyboard.A):
-        #     gameInstanceClass.controls['left'] = 1
-        # elif sf.Keyboard.is_key_pressed(sf.Keyboard.D):
-        #     gameInstanceClass.controls['right'] = 1
-        # elif sf.Keyboard.is_key_pressed(sf.Keyboard.Q):
-        #     gameInstanceClass.controls['rotateL'] = 1
-        # elif sf.Keyboard.is_key_pressed(sf.Keyboard.E):
-        #     gameInstanceClass.controls['rotateR'] = 1
 
 
 if __name__ == "__main__":
