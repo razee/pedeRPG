@@ -30,3 +30,9 @@ import WorldCreator
 # ## Testing getData ##
 
 # print starmap.getStarData('name','xyz10')
+
+# ## Testing setData ##
+
+# print "Old star data: ", starmap.getStarData('name','xyz11')
+# starmap.setStarData('xyz11', (10,10,10), 10)
+# print "New star data: ", starmap.getStarData('name','xyz11')
