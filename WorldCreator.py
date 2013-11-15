@@ -63,5 +63,4 @@ class StarMap:
             self.data.append([name, location, size])
         else:
             oldData, index = self.getStarData('name', name)
-            self.data[index][1] = location
-            self.data[index][2] = size
+            self.data[index][1:] = location, size

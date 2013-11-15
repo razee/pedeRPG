@@ -23,7 +23,7 @@ class Game:
         # Create map class
         starMap = WorldCreator.StarMap()
         # Create star data
-        starMap.randomStarGenerator
+        starMap.randomStarGenerator()
 
 
         ## Create Player
@@ -35,25 +35,30 @@ class Game:
         # START OUR GAME LOOP!
         self.gameLoop()
 
+
     def gameLoop(self):
         # Game runs while the window is open
         while self.window.is_open:
+
             # We start every iteration with new inputs
             self.events.listen(self)
+
             # Calculate how these inputs change our world, player, etc.
             self.calculateIteration()
 
-            # CLEAR SCREEN
-            self.window.clear(sf.Color.TRANSPARENT)
             # DRAW - RENDER EVERYTHING
+            # clear screen
+            self.window.clear(sf.Color.TRANSPARENT)
+
             self.window.draw(self.playerOne.shape)
             self.window.display()
 
 
     def calculateIteration(self):
-        self.playerOne.movePlayer(self)
         ## TODO
-        # Update everything
+        # Calculate everything
+        self.playerOne.movePlayer(self)
+
 
 
 if __name__ == "__main__":

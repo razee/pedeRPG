@@ -14,7 +14,7 @@ class Player:
         self.shape.position = (GIC.RESOLUTION[0]/2, GIC.RESOLUTION[1]/2)
 
     def movePlayer(self, GIC):
-        step = 1
+        step = 0.1
         stepfi = 1
         if GIC.controls['up']:
             self.shape.move((0,-step))
@@ -40,7 +40,7 @@ class Player:
             self.shape.rotate(stepfi)
 
 class SpaceShip:
-    def __init__(self, GIC, location = (0,0), AI = 0):
+    def __init__(self, GIC, location = (0,0,0), AI = False):
         self.vel = {'x':0, 'y':0} # Velocity of the ship in x in y direction
         self.dVEL = 1 # delta Velocity -> change of velocity in every step (if accelarating)
         self.angle = 0 # Angle of the ship
